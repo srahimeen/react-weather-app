@@ -9,6 +9,13 @@ const API_KEY = Secrets.api_key;
 //http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric
 
 class App extends React.Component {
+  state = {
+    city: undefined,
+    country: undefined,
+    temp: undefined,
+    humidity: undefined,
+    error: undefined
+  }
   getWeather = async (e) => {
     e.preventDefault();
     const city = e.target.elements.city.value;
@@ -16,13 +23,26 @@ class App extends React.Component {
     const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`);
     const data = await api_call.json();
     console.log(data);
+    this.setState({
+      city: data.name,
+      country: data.sys.country,
+      temp: data.main.temp,
+      humidity: data.main.humidity,
+      error: ""
+    });
   }
   render() {
     return (
       <div>
         <p><Titles /></p>
         <p><Form getWeather={this.getWeather}/></p>
-        <p><Display /></p>
+        <p><Display 
+          city={this.state.city}
+          country={this.state.country}
+          temp={this.state.temp}
+          humidity={this.state.humidity}
+          error={this.state.error}
+        /></p>
       </div>
     );
   }
