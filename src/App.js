@@ -1,5 +1,7 @@
 import React from "react";
 
+import Grid from '@material-ui/core/Grid';
+
 import Titles from "./components/Titles"
 import Form from "./components/Form"
 import Display from "./components/Display"
