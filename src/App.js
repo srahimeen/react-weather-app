@@ -1,11 +1,17 @@
 import React from "react";
 
 import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 
 import Titles from "./components/Titles"
 import Form from "./components/Form"
 import Display from "./components/Display"
 import Secrets from "./secrets.json"
+
+//style
+const style = {
+  Paper: {padding: 20, marginTop: 10, marginBottom: 10, textAlign: 'center'}
+}
 
 const API_KEY = Secrets.api_key;
 
@@ -54,7 +60,33 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <p><Titles /></p>
+        <Grid container>
+          <Grid item md={12}>
+            <Paper style={style.Paper}>
+              <p><Titles /></p>
+            </Paper>
+          </Grid>
+          <Grid item md={12}>
+            <Paper style={style.Paper}>
+              <p><Form getWeather={this.getWeather}/></p>
+              <p><Display 
+                city={this.state.city}
+                country={this.state.country}
+                temp={this.state.temp}
+                humidity={this.state.humidity}
+                error={this.state.error}
+                />
+              </p>
+            </Paper>
+          </Grid>
+        </Grid>
+      </div>
+    );
+  }
+};
+
+/*
+<p><Titles /></p>
         <p><Form getWeather={this.getWeather}/></p>
         <p><Display 
           city={this.state.city}
@@ -63,9 +95,6 @@ class App extends React.Component {
           humidity={this.state.humidity}
           error={this.state.error}
         /></p>
-      </div>
-    );
-  }
-};
+*/
 
 export default App;
