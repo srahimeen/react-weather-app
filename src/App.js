@@ -37,6 +37,10 @@ class App extends React.Component {
         } 
         else {
           this.setState({
+            city: undefined,
+            country: undefined,
+            temp: undefined,
+            humidity:undefined,
             error: "Please enter a city and a country..."
           });
         }
