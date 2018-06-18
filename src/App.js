@@ -63,20 +63,19 @@ class App extends React.Component {
         <Grid container>
           <Grid item md={12}>
             <Paper style={style.Paper}>
-              <p><Titles /></p>
+              <Titles />
             </Paper>
           </Grid>
           <Grid item md={12}>
             <Paper style={style.Paper}>
-              <p><Form getWeather={this.getWeather}/></p>
-              <p><Display 
+              <Form getWeather={this.getWeather}/>
+              <Display 
                 city={this.state.city}
                 country={this.state.country}
                 temp={this.state.temp}
                 humidity={this.state.humidity}
                 error={this.state.error}
                 />
-              </p>
             </Paper>
           </Grid>
         </Grid>
